@@ -1,9 +1,11 @@
 import React from 'react';
+import Bookmark from './Bookmark.js';
+import data from './data.js';
 
 export default class BookmarkList extends React.Component {
     render() {
         return (
-            <h1>BookmarkList</h1>
+            <Bookmark data={data} />
         )
     }
 }

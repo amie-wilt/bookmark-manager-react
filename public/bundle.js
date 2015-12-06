@@ -20235,6 +20235,14 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _Bookmark = __webpack_require__(/*! ./Bookmark.js */ 161);
+	
+	var _Bookmark2 = _interopRequireDefault(_Bookmark);
+	
+	var _data = __webpack_require__(/*! ./data.js */ 162);
+	
+	var _data2 = _interopRequireDefault(_data);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20255,11 +20263,7 @@
 	    _createClass(BookmarkList, [{
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(
-	                'h1',
-	                null,
-	                'BookmarkList'
-	            );
+	            return _react2.default.createElement(_Bookmark2.default, { data: _data2.default });
 	        }
 	    }]);
 	
@@ -20267,6 +20271,100 @@
 	})(_react2.default.Component);
 	
 	exports.default = BookmarkList;
+
+/***/ },
+/* 161 */
+/*!****************************!*\
+  !*** ./public/Bookmark.js ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Bookmark = (function (_React$Component) {
+	    _inherits(Bookmark, _React$Component);
+	
+	    function Bookmark() {
+	        _classCallCheck(this, Bookmark);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Bookmark).apply(this, arguments));
+	    }
+	
+	    _createClass(Bookmark, [{
+	        key: 'render',
+	        value: function render() {
+	            var bookmarks = this.props.data.map(function (bookmark) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: bookmark.url },
+	                        _react2.default.createElement(
+	                            'h2',
+	                            null,
+	                            bookmark.title
+	                        )
+	                    )
+	                );
+	            });
+	
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                bookmarks
+	            );
+	        }
+	    }]);
+	
+	    return Bookmark;
+	})(_react2.default.Component);
+	
+	exports.default = Bookmark;
+
+/***/ },
+/* 162 */
+/*!************************!*\
+  !*** ./public/data.js ***!
+  \************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var data = [{
+	    title: "Google",
+	    url: "https://www.google.com/"
+	}, {
+	    title: "YouTube",
+	    url: "https://www.youtube.com/"
+	
+	}, {
+	    title: "The Iron Yard",
+	    url: "http://theironyard.com/"
+	}];
+	
+	exports.default = data;
 
 /***/ }
 /******/ ]);
