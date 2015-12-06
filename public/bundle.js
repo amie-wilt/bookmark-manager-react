@@ -63,9 +63,17 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _BookmarkList = __webpack_require__(/*! ./BookmarkList.js */ 160);
+	var _BookmarkList = __webpack_require__(/*! ./BookmarkList.js */ 159);
 	
 	var _BookmarkList2 = _interopRequireDefault(_BookmarkList);
+	
+	var _Form = __webpack_require__(/*! ./Form.js */ 162);
+	
+	var _Form2 = _interopRequireDefault(_Form);
+	
+	var _data = __webpack_require__(/*! ./data.js */ 161);
+	
+	var _data2 = _interopRequireDefault(_data);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -87,7 +95,12 @@
 	    _createClass(App, [{
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(_BookmarkList2.default, null);
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(_BookmarkList2.default, { bookmarkList: _data2.default }),
+	                _react2.default.createElement(_Form2.default, null)
+	            );
 	        }
 	    }]);
 	
@@ -20216,8 +20229,7 @@
 	module.exports = __webpack_require__(/*! react/lib/ReactDOM */ 3);
 
 /***/ },
-/* 159 */,
-/* 160 */
+/* 159 */
 /*!********************************!*\
   !*** ./public/BookmarkList.js ***!
   \********************************/
@@ -20235,11 +20247,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Bookmark = __webpack_require__(/*! ./Bookmark.js */ 161);
+	var _Bookmark = __webpack_require__(/*! ./Bookmark.js */ 160);
 	
 	var _Bookmark2 = _interopRequireDefault(_Bookmark);
 	
-	var _data = __webpack_require__(/*! ./data.js */ 162);
+	var _data = __webpack_require__(/*! ./data.js */ 161);
 	
 	var _data2 = _interopRequireDefault(_data);
 	
@@ -20254,16 +20266,29 @@
 	var BookmarkList = (function (_React$Component) {
 	    _inherits(BookmarkList, _React$Component);
 	
-	    function BookmarkList() {
+	    function BookmarkList(props) {
 	        _classCallCheck(this, BookmarkList);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(BookmarkList).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BookmarkList).call(this, props));
+	
+	        _this.state = {
+	            bookmarkList: _this.props.bookmarkList
+	        };
+	        return _this;
 	    }
 	
 	    _createClass(BookmarkList, [{
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(_Bookmark2.default, { data: _data2.default });
+	            var bookmarks = this.state.bookmarkList.map(function (bookmark, i) {
+	                return _react2.default.createElement(_Bookmark2.default, { bookmark: bookmark, key: i });
+	            });
+	
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                bookmarks
+	            );
 	        }
 	    }]);
 	
@@ -20273,7 +20298,7 @@
 	exports.default = BookmarkList;
 
 /***/ },
-/* 161 */
+/* 160 */
 /*!****************************!*\
   !*** ./public/Bookmark.js ***!
   \****************************/
@@ -20311,26 +20336,18 @@
 	    _createClass(Bookmark, [{
 	        key: 'render',
 	        value: function render() {
-	            var bookmarks = this.props.data.map(function (bookmark) {
-	                return _react2.default.createElement(
-	                    'div',
-	                    null,
-	                    _react2.default.createElement(
-	                        'a',
-	                        { href: bookmark.url },
-	                        _react2.default.createElement(
-	                            'h2',
-	                            null,
-	                            bookmark.title
-	                        )
-	                    )
-	                );
-	            });
-	
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                bookmarks
+	                _react2.default.createElement(
+	                    'a',
+	                    { href: this.props.bookmark.url },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        this.props.bookmark.title
+	                    )
+	                )
 	            );
 	        }
 	    }]);
@@ -20341,7 +20358,7 @@
 	exports.default = Bookmark;
 
 /***/ },
-/* 162 */
+/* 161 */
 /*!************************!*\
   !*** ./public/data.js ***!
   \************************/
@@ -20365,6 +20382,84 @@
 	}];
 	
 	exports.default = data;
+
+/***/ },
+/* 162 */
+/*!************************!*\
+  !*** ./public/Form.js ***!
+  \************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Form = (function (_React$Component) {
+	    _inherits(Form, _React$Component);
+	
+	    function Form(props) {
+	        _classCallCheck(this, Form);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Form).call(this, props));
+	
+	        _this.state = {
+	            title: "",
+	            url: ""
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Form, [{
+	        key: "handleTitleChange",
+	        value: function handleTitleChange(e) {
+	            this.setState({
+	                title: e.target.value
+	            });
+	        }
+	    }, {
+	        key: "handleUrlChange",
+	        value: function handleUrlChange(e) {
+	            this.setState({
+	                url: e.target.value
+	            });
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "form",
+	                { action: "" },
+	                _react2.default.createElement("input", { type: "text",
+	                    onChange: this.handleTitleChange.bind(this),
+	                    value: this.state.title }),
+	                _react2.default.createElement("input", { type: "text",
+	                    onChange: this.handleUrlChange.bind(this),
+	                    value: this.state.title }),
+	                _react2.default.createElement("button", { type: "submit", value: "Submit" })
+	            );
+	        }
+	    }]);
+	
+	    return Form;
+	})(_react2.default.Component);
+	
+	exports.default = Form;
 
 /***/ }
 /******/ ]);

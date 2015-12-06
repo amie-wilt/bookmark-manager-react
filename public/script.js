@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import BookmarkList from './BookmarkList.js';
+import Form from './Form.js';
+import data from './data.js';
 
 export default class App extends React.Component {
     render() {
         return (
-            <BookmarkList />
+            <div>
+                <BookmarkList bookmarkList={data} />
+                <Form />
+            </div>
         )
     }
 }
