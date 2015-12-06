@@ -21,16 +21,32 @@ export default class Form extends React.Component {
         })
     }
 
+    handleSubmit(e) {
+        e.preventDefault;
+        let title = this.state.title;
+        let url = this.state.url;
+
+        this.setState({
+            title: title,
+            url: url
+        })
+
+        this.setState({
+            title: "",
+            url: ""
+        })
+    }
+
     render() {
         return (
-            <form action="">
+            <form action="" onSubmit={this.handleSubmit.bind(this)}>
                 <input type="text"
                        onChange={this.handleTitleChange.bind(this)}
                        value={this.state.title} />
                 <input type="text"
                        onChange={this.handleUrlChange.bind(this)}
-                       value={this.state.title} />
-                <button type="submit" value="Submit"></button>
+                       value={this.state.url} />
+                <button type="submit">Submit</button>
             </form>
         )
     }

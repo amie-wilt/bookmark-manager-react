@@ -67,11 +67,11 @@
 	
 	var _BookmarkList2 = _interopRequireDefault(_BookmarkList);
 	
-	var _Form = __webpack_require__(/*! ./Form.js */ 162);
+	var _Form = __webpack_require__(/*! ./Form.js */ 161);
 	
 	var _Form2 = _interopRequireDefault(_Form);
 	
-	var _data = __webpack_require__(/*! ./data.js */ 161);
+	var _data = __webpack_require__(/*! ./data.js */ 162);
 	
 	var _data2 = _interopRequireDefault(_data);
 	
@@ -20251,10 +20251,6 @@
 	
 	var _Bookmark2 = _interopRequireDefault(_Bookmark);
 	
-	var _data = __webpack_require__(/*! ./data.js */ 161);
-	
-	var _data2 = _interopRequireDefault(_data);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20278,6 +20274,9 @@
 	    }
 	
 	    _createClass(BookmarkList, [{
+	        key: 'addBookmark',
+	        value: function addBookmark() {}
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var bookmarks = this.state.bookmarkList.map(function (bookmark, i) {
@@ -20360,32 +20359,6 @@
 /***/ },
 /* 161 */
 /*!************************!*\
-  !*** ./public/data.js ***!
-  \************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	var data = [{
-	    title: "Google",
-	    url: "https://www.google.com/"
-	}, {
-	    title: "YouTube",
-	    url: "https://www.youtube.com/"
-	
-	}, {
-	    title: "The Iron Yard",
-	    url: "http://theironyard.com/"
-	}];
-	
-	exports.default = data;
-
-/***/ },
-/* 162 */
-/*!************************!*\
   !*** ./public/Form.js ***!
   \************************/
 /***/ function(module, exports, __webpack_require__) {
@@ -20440,18 +20413,39 @@
 	            });
 	        }
 	    }, {
+	        key: "handleSubmit",
+	        value: function handleSubmit(e) {
+	            e.preventDefault;
+	            var title = this.state.title;
+	            var url = this.state.url;
+	
+	            this.setState({
+	                title: title,
+	                url: url
+	            });
+	
+	            this.setState({
+	                title: "",
+	                url: ""
+	            });
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
 	                "form",
-	                { action: "" },
+	                { action: "", onSubmit: this.handleSubmit.bind(this) },
 	                _react2.default.createElement("input", { type: "text",
 	                    onChange: this.handleTitleChange.bind(this),
 	                    value: this.state.title }),
 	                _react2.default.createElement("input", { type: "text",
 	                    onChange: this.handleUrlChange.bind(this),
-	                    value: this.state.title }),
-	                _react2.default.createElement("button", { type: "submit", value: "Submit" })
+	                    value: this.state.url }),
+	                _react2.default.createElement(
+	                    "button",
+	                    { type: "submit" },
+	                    "Submit"
+	                )
 	            );
 	        }
 	    }]);
@@ -20460,6 +20454,32 @@
 	})(_react2.default.Component);
 	
 	exports.default = Form;
+
+/***/ },
+/* 162 */
+/*!************************!*\
+  !*** ./public/data.js ***!
+  \************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var data = [{
+	    title: "Google",
+	    url: "https://www.google.com/"
+	}, {
+	    title: "YouTube",
+	    url: "https://www.youtube.com/"
+	
+	}, {
+	    title: "The Iron Yard",
+	    url: "http://theironyard.com/"
+	}];
+	
+	exports.default = data;
 
 /***/ }
 /******/ ]);
