@@ -20428,7 +20428,7 @@
 	    }, {
 	        key: "handleSubmit",
 	        value: function handleSubmit(e) {
-	            e.preventDefault;
+	            e.preventDefault();
 	
 	            this.props.action({
 	                title: this.state.title,
