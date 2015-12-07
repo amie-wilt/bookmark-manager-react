@@ -23,20 +23,17 @@ export default class Form extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault;
-        let title = this.state.title;
-        let url = this.state.url;
 
-        this.setState({
-            title: title,
-            url: url
-        })
+        this.props.action({
+            title: this.state.title,
+            url: this.state.url
+        });
 
         this.setState({
             title: "",
             url: ""
-        })
+        });
     }
-
     render() {
         return (
             <form action="" onSubmit={this.handleSubmit.bind(this)}>

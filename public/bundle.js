@@ -86,20 +86,41 @@
 	var App = (function (_React$Component) {
 	    _inherits(App, _React$Component);
 	
-	    function App() {
+	    function App(props) {
 	        _classCallCheck(this, App);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+	
+	        _this.state = {
+	            bookmarkList: []
+	        };
+	        return _this;
 	    }
 	
 	    _createClass(App, [{
+	        key: 'addBookmark',
+	        value: function addBookmark(bookmark) {
+	            var newList = this.state.bookmarkList;
+	            newList.push(bookmark);
+	            this.setState({
+	                bookmarkList: newList
+	            });
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.setState({
+	                bookmarkList: this.props.bookmarkList
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_BookmarkList2.default, { bookmarkList: _data2.default }),
-	                _react2.default.createElement(_Form2.default, null)
+	                _react2.default.createElement(_BookmarkList2.default, { bookmarkList: this.state.bookmarkList }),
+	                _react2.default.createElement(_Form2.default, { action: this.addBookmark.bind(this) })
 	            );
 	        }
 	    }]);
@@ -109,7 +130,7 @@
 	
 	exports.default = App;
 	
-	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));
+	_reactDom2.default.render(_react2.default.createElement(App, { bookmarkList: _data2.default }), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -20262,24 +20283,16 @@
 	var BookmarkList = (function (_React$Component) {
 	    _inherits(BookmarkList, _React$Component);
 	
-	    function BookmarkList(props) {
+	    function BookmarkList() {
 	        _classCallCheck(this, BookmarkList);
 	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BookmarkList).call(this, props));
-	
-	        _this.state = {
-	            bookmarkList: _this.props.bookmarkList
-	        };
-	        return _this;
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(BookmarkList).apply(this, arguments));
 	    }
 	
 	    _createClass(BookmarkList, [{
-	        key: 'addBookmark',
-	        value: function addBookmark() {}
-	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var bookmarks = this.state.bookmarkList.map(function (bookmark, i) {
+	            var bookmarks = this.props.bookmarkList.map(function (bookmark, i) {
 	                return _react2.default.createElement(_Bookmark2.default, { bookmark: bookmark, key: i });
 	            });
 	
@@ -20339,11 +20352,11 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    'a',
-	                    { href: this.props.bookmark.url },
+	                    'h2',
+	                    null,
 	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
+	                        'a',
+	                        { href: this.props.bookmark.url },
 	                        this.props.bookmark.title
 	                    )
 	                )
@@ -20416,12 +20429,10 @@
 	        key: "handleSubmit",
 	        value: function handleSubmit(e) {
 	            e.preventDefault;
-	            var title = this.state.title;
-	            var url = this.state.url;
 	
-	            this.setState({
-	                title: title,
-	                url: url
+	            this.props.action({
+	                title: this.state.title,
+	                url: this.state.url
 	            });
 	
 	            this.setState({

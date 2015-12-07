@@ -5,16 +5,37 @@ import Form from './Form.js';
 import data from './data.js';
 
 export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            bookmarkList: []
+        }
+    }
+
+    addBookmark(bookmark) {
+        let newList = this.state.bookmarkList;
+        newList.push(bookmark);
+        this.setState({
+            bookmarkList: newList
+        })
+    }
+
+    componentDidMount() {
+        this.setState({
+            bookmarkList: this.props.bookmarkList
+        })
+    }
+
     render() {
         return (
             <div>
-                <BookmarkList bookmarkList={data} />
-                <Form />
+                <BookmarkList bookmarkList={this.state.bookmarkList} />
+                <Form action={this.addBookmark.bind(this)} />
             </div>
         )
     }
 }
 
 ReactDOM.render(
-    <App />, document.getElementById('app')
+    <App bookmarkList={data} />, document.getElementById('app')
 );
