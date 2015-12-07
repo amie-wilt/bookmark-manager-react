@@ -4,9 +4,9 @@ export default class Bookmark extends React.Component {
     render() {
         return (
             <div>
-                <h2>
-                    <a href={this.props.bookmark.url}>{this.props.bookmark.title}</a>
-                </h2>
+                <p>
+                    <a href={this.props.bookmark.url} target="_blank">{this.props.bookmark.title}</a>
+                </p>
             </div>
         )
     }

@@ -4,12 +4,15 @@ import Bookmark from './Bookmark.js';
 export default class BookmarkList extends React.Component {
     render() {
         let bookmarks = this.props.bookmarkList.map((bookmark, i) =>
-            <Bookmark bookmark={bookmark} key={i}/>
+            <li><Bookmark bookmark={bookmark} key={i}/></li>
         );
 
         return (
             <div>
-                {bookmarks}
+                <h2>Your Bookmarks</h2>
+                <ul>
+                    {bookmarks}
+                </ul>
             </div>
         )
     }

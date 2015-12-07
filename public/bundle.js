@@ -119,6 +119,11 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Bookmark Manager'
+	                ),
 	                _react2.default.createElement(_BookmarkList2.default, { bookmarkList: this.state.bookmarkList }),
 	                _react2.default.createElement(_Form2.default, { action: this.addBookmark.bind(this) })
 	            );
@@ -20293,13 +20298,26 @@
 	        key: 'render',
 	        value: function render() {
 	            var bookmarks = this.props.bookmarkList.map(function (bookmark, i) {
-	                return _react2.default.createElement(_Bookmark2.default, { bookmark: bookmark, key: i });
+	                return _react2.default.createElement(
+	                    'li',
+	                    null,
+	                    _react2.default.createElement(_Bookmark2.default, { bookmark: bookmark, key: i })
+	                );
 	            });
 	
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                bookmarks
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'Your Bookmarks'
+	                ),
+	                _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    bookmarks
+	                )
 	            );
 	        }
 	    }]);
@@ -20316,7 +20334,7 @@
   \****************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
@@ -20346,17 +20364,17 @@
 	    }
 	
 	    _createClass(Bookmark, [{
-	        key: 'render',
+	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'div',
+	                "div",
 	                null,
 	                _react2.default.createElement(
-	                    'h2',
+	                    "p",
 	                    null,
 	                    _react2.default.createElement(
-	                        'a',
-	                        { href: this.props.bookmark.url },
+	                        "a",
+	                        { href: this.props.bookmark.url, target: "_blank" },
 	                        this.props.bookmark.title
 	                    )
 	                )
@@ -20444,18 +20462,27 @@
 	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
-	                "form",
-	                { action: "", onSubmit: this.handleSubmit.bind(this) },
-	                _react2.default.createElement("input", { type: "text",
-	                    onChange: this.handleTitleChange.bind(this),
-	                    value: this.state.title }),
-	                _react2.default.createElement("input", { type: "text",
-	                    onChange: this.handleUrlChange.bind(this),
-	                    value: this.state.url }),
+	                "div",
+	                null,
 	                _react2.default.createElement(
-	                    "button",
-	                    { type: "submit" },
-	                    "Submit"
+	                    "h2",
+	                    null,
+	                    "Add a Bookmark!"
+	                ),
+	                _react2.default.createElement(
+	                    "form",
+	                    { action: "", onSubmit: this.handleSubmit.bind(this) },
+	                    _react2.default.createElement("input", { type: "text",
+	                        onChange: this.handleTitleChange.bind(this),
+	                        value: this.state.title }),
+	                    _react2.default.createElement("input", { type: "text",
+	                        onChange: this.handleUrlChange.bind(this),
+	                        value: this.state.url }),
+	                    _react2.default.createElement(
+	                        "button",
+	                        { type: "submit" },
+	                        "Submit"
+	                    )
 	                )
 	            );
 	        }

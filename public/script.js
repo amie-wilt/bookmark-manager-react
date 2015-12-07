@@ -29,6 +29,7 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
+                <h1>Bookmark Manager</h1>
                 <BookmarkList bookmarkList={this.state.bookmarkList} />
                 <Form action={this.addBookmark.bind(this)} />
             </div>
